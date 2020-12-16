@@ -1,10 +1,22 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-
+import {ActionListContext} from '../listContext'
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import { useState, useEffect } from 'react';
+
+const url = 'http://localhost:3000/api/playing'
 
 export default function TabOneScreen() {
+  const [actionList, setActionList] = useState([]);
+
+//   useEffect(() => {
+//     fetch(url)
+//       .then((response) => response.json())
+//       .then((responseJson) => setActionList(Object.values(responseJson)))
+//       .catch((error) => console.error("error in catch ----------", error));
+//    }, [])
+// console.log('actionList :>> ', actionList);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab One</Text>
