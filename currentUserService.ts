@@ -1,20 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
-
-const url =  'http://localhost:3000/api/profiles/rim'
-const url1 =  'http://localhost:3000/api/profiles/gigi'
-
-const url2 =  'http://localhost:3000/api/player'
-import PlayerProvider, { PlayerContext } from './currentUserContext'
-// const {Player, setPlayer}  = React.useContext(PlayerContext)
+import PlayerProvider, { PlayerContext } from './currentUserContext';
 import axios from 'axios';
 // const url =  ngrok.Ngrok + '/api/players'
-// import AsyncStorage  from '@react-native-async-storage/async-storage';
-// import { useState } from 'react';
-
+const url =  'http://localhost:3000/api/profiles/rim'
+const url1 =  'http://localhost:3000/api/profiles/gaby'
 
 export default async function getCurrentUser(){
-
-  const  currentPlayer = await fetch(url) 
+  const  currentPlayer = await fetch(url1) 
   .then((reponse) => reponse.json())
   .then( (responseJson) =>  {
       return responseJson
@@ -25,7 +17,7 @@ export default async function getCurrentUser(){
   return currentPlayer
  }
 
- export async function getPlayer() {
+ export async function getPlayerAxios() {
   const {Player, setPlayer}  = useContext(PlayerContext)
 
   await axios.get(url1)

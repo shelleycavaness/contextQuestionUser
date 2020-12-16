@@ -6,7 +6,7 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import CurrentUserProvider, { AppCtx, CurrentUserContext, sampleAppContext, useContextDefaultValue } from './currentUserContext';
-import getCurrentUser, {getPlayer} from './currentUserService';
+import getCurrentUser, {getPlayerAxios} from './currentUserService';
 import PlayerProvider, { PlayerContext } from './currentUserContext'
 
 export default function App() {
@@ -18,6 +18,8 @@ export default function App() {
   useEffect(() => {
     async function fetchPlayer(){
         try{
+          // await getPlayerAxios()
+          await getCurrentUser()
           setPlayer(await getCurrentUser());  
         } catch(err){
           console.log('err in player ╮(─▽─)╭       :>> ', err);
@@ -26,7 +28,9 @@ export default function App() {
     fetchPlayer()  
   }, [])
   useEffect(()=>{
-  // console.log('test context :>> ', sampleAppContext);
+  console.log('test context :>> ', setPlayer);
+  console.log('test context :>> ', Player);
+
   }, [Player])
 
   if (!isLoadingComplete) {
@@ -35,12 +39,11 @@ export default function App() {
     return (
       <SafeAreaProvider>
          <PlayerProvider>
-         {/* <CurrentUserContext.Provider value={useContextDefaultValue }>   */}
+      
          {/* <AppCtx.Provider value={sampleAppContext}> */}
         <Navigation colorScheme={colorScheme} />
         <StatusBar />
         {/* </AppCtx.Provider> */}
-        {/* </CurrentUserContext.Provider>   */}
         </PlayerProvider>
   
       </SafeAreaProvider>
